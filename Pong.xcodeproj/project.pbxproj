@@ -1,0 +1,302 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		24A4D7691690F174008B2237 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A4D7681690F174008B2237 /* Cocoa.framework */; };
+		24A4D7731690F174008B2237 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 24A4D7711690F174008B2237 /* InfoPlist.strings */; };
+		24A4D7751690F174008B2237 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A4D7741690F174008B2237 /* main.m */; };
+		24A4D7791690F174008B2237 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 24A4D7771690F174008B2237 /* Credits.rtf */; };
+		24A4D77C1690F174008B2237 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A4D77B1690F174008B2237 /* AppDelegate.m */; };
+		24A4D77F1690F174008B2237 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24A4D77D1690F174008B2237 /* MainMenu.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		24A4D7641690F174008B2237 /* Pong.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pong.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		24A4D7681690F174008B2237 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		24A4D76B1690F174008B2237 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		24A4D76C1690F174008B2237 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		24A4D76D1690F174008B2237 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		24A4D7701690F174008B2237 /* Pong-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pong-Info.plist"; sourceTree = "<group>"; };
+		24A4D7721690F174008B2237 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		24A4D7741690F174008B2237 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		24A4D7761690F174008B2237 /* Pong-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pong-Prefix.pch"; sourceTree = "<group>"; };
+		24A4D7781690F174008B2237 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		24A4D77A1690F174008B2237 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		24A4D77B1690F174008B2237 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		24A4D77E1690F174008B2237 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		24A4D7611690F174008B2237 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24A4D7691690F174008B2237 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		24A4D7591690F174008B2237 = {
+			isa = PBXGroup;
+			children = (
+				24A4D76E1690F174008B2237 /* Pong */,
+				24A4D7671690F174008B2237 /* Frameworks */,
+				24A4D7651690F174008B2237 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		24A4D7651690F174008B2237 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				24A4D7641690F174008B2237 /* Pong.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		24A4D7671690F174008B2237 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				24A4D7681690F174008B2237 /* Cocoa.framework */,
+				24A4D76A1690F174008B2237 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		24A4D76A1690F174008B2237 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				24A4D76B1690F174008B2237 /* AppKit.framework */,
+				24A4D76C1690F174008B2237 /* CoreData.framework */,
+				24A4D76D1690F174008B2237 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		24A4D76E1690F174008B2237 /* Pong */ = {
+			isa = PBXGroup;
+			children = (
+				24A4D77A1690F174008B2237 /* AppDelegate.h */,
+				24A4D77B1690F174008B2237 /* AppDelegate.m */,
+				24A4D77D1690F174008B2237 /* MainMenu.xib */,
+				24A4D76F1690F174008B2237 /* Supporting Files */,
+			);
+			path = Pong;
+			sourceTree = "<group>";
+		};
+		24A4D76F1690F174008B2237 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				24A4D7701690F174008B2237 /* Pong-Info.plist */,
+				24A4D7711690F174008B2237 /* InfoPlist.strings */,
+				24A4D7741690F174008B2237 /* main.m */,
+				24A4D7761690F174008B2237 /* Pong-Prefix.pch */,
+				24A4D7771690F174008B2237 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		24A4D7631690F174008B2237 /* Pong */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 24A4D7821690F174008B2237 /* Build configuration list for PBXNativeTarget "Pong" */;
+			buildPhases = (
+				24A4D7601690F174008B2237 /* Sources */,
+				24A4D7611690F174008B2237 /* Frameworks */,
+				24A4D7621690F174008B2237 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Pong;
+			productName = Pong;
+			productReference = 24A4D7641690F174008B2237 /* Pong.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		24A4D75B1690F174008B2237 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Nik Klassen";
+			};
+			buildConfigurationList = 24A4D75E1690F174008B2237 /* Build configuration list for PBXProject "Pong" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 24A4D7591690F174008B2237;
+			productRefGroup = 24A4D7651690F174008B2237 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				24A4D7631690F174008B2237 /* Pong */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		24A4D7621690F174008B2237 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24A4D7731690F174008B2237 /* InfoPlist.strings in Resources */,
+				24A4D7791690F174008B2237 /* Credits.rtf in Resources */,
+				24A4D77F1690F174008B2237 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		24A4D7601690F174008B2237 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				24A4D7751690F174008B2237 /* main.m in Sources */,
+				24A4D77C1690F174008B2237 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		24A4D7711690F174008B2237 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				24A4D7721690F174008B2237 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		24A4D7771690F174008B2237 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				24A4D7781690F174008B2237 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		24A4D77D1690F174008B2237 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				24A4D77E1690F174008B2237 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		24A4D7801690F174008B2237 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		24A4D7811690F174008B2237 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		24A4D7831690F174008B2237 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Pong/Pong-Prefix.pch";
+				INFOPLIST_FILE = "Pong/Pong-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		24A4D7841690F174008B2237 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Pong/Pong-Prefix.pch";
+				INFOPLIST_FILE = "Pong/Pong-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		24A4D75E1690F174008B2237 /* Build configuration list for PBXProject "Pong" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24A4D7801690F174008B2237 /* Debug */,
+				24A4D7811690F174008B2237 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		24A4D7821690F174008B2237 /* Build configuration list for PBXNativeTarget "Pong" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24A4D7831690F174008B2237 /* Debug */,
+				24A4D7841690F174008B2237 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 24A4D75B1690F174008B2237 /* Project object */;
+}
