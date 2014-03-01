@@ -8,7 +8,7 @@
 
 #include "Ball.h"
 
-void Ball::spawn(int startX, int startY) {
+void Ball::spawn( int startX, int startY ) {
     
     x = startX;
     y = startY;
@@ -17,7 +17,7 @@ void Ball::spawn(int startX, int startY) {
     vy = 0;
 }
 
-void Ball::setVels(int newVX, int newVY) {
+void Ball::setVels( int newVX, int newVY ) {
 
     if (newVX <= MAX_SPEED) vx = newVX;
     else vx = MAX_SPEED;
@@ -41,18 +41,17 @@ void Ball::move() {
 }
 
 bool Ball::isMoving() {
-    if (vx || vy) return true;
+    if( vx || vy ) return true;
     else return false;
 }
 
-void Ball::bounce(char c, int i) {
+void Ball::bounce( char c, int i ) {
     
-    if (c == 'x') {
+    if (c == 'x' ) {
         x -= vx;
         vx = -vx;
-    }
-    else {
-        if ((vy < 0 && i < 0) || (vy > 0 && i > 0)) {
+    } else {
+        if( (vy < 0 && i < 0) || (vy > 0 && i > 0) ) {
             y += i;
             vy += i;
             vy = -vy;
@@ -63,15 +62,14 @@ void Ball::bounce(char c, int i) {
     }
 }
 
-void Ball::draw(SDL_Surface *src) {
+void Ball::draw( SDL_Surface *src ) {
     
     SDL_Rect rect;
     
     rect.x = x;
     rect.y = y;
     
-    SDL_BlitSurface(image, NULL, src, &rect);
-    
+    SDL_BlitSurface( image, NULL, src, &rect );
 }
 
 SDL_Rect Ball::getRect() {

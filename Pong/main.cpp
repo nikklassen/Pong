@@ -8,14 +8,8 @@
 
 #include "main.h"
 
-// Basic screen variables
 SDL_Surface *screen = NULL;
-
-// Rect that represents that score bar
 SDL_Rect score_rect;
-
-// Timer variables
-const int fps = 32;
 
 SDL_Surface *background = NULL;
 
@@ -38,55 +32,48 @@ SDL_Color fontColour = {255,255,255};
 // Event handler
 SDL_Event event;
 
-int main( int argc, char* args[] )
-{
-    // Loop control variables
+int main( int argc, char* args[] ) {
+    
     bool quit = false;
     Timer fps;
     
-    // Init all core functions (SDL, TTF, etc.)
+    // Load game board
     init();
-    
-    // Init variables with images, co ordinates, etc
     load();
-    
-    // Draw images
     draw();
     
-    // Load the ball initially
     b.spawn(my_paddle.x + 25, my_paddle.y + 25);
     
-    while (!quit) {
+    while( !quit ) {
         
         fps.start();
         
-        while (SDL_PollEvent(&event)) {
+        while( SDL_PollEvent(&event) ) {
             
             // Two conditions to quit the app, x out the window or type Command-Q
-            if (event.type == SDL_QUIT) {
+            if( event.type == SDL_QUIT ) {
                 quit = true;
-            } else if (event.type == SDL_KEYDOWN) {
+            } else if( event.type == SDL_KEYDOWN ) {
                 
-                if ((SDL_GetModState() & KMOD_META) && event.key.keysym.sym == SDLK_q) {
+                if ( (SDL_GetModState() & KMOD_META) && event.key.keysym.sym == SDLK_q ) {
                     quit = true;
                 }
                 
-                // "Serve" the ball with the space bar
+                // Serve with the space bar
                 else if (event.key.keysym.sym == SDLK_SPACE && !b.isMoving()) {
                     b.serve();
                 }
                 
+                // Hack to test changes in paddle size
                 else if (event.key.keysym.sym == SDLK_c) {
                     if (!my_paddle.currentImage) my_paddle.currentImage = 1;
                     else my_paddle.currentImage = 0;
                 }
             }
             
-            // Handle the movement of your paddle within the class
             my_paddle.handle_event(event);
         }
         
-        // Adjust position co-ordinates
         my_paddle.move();
         
         b.move();
@@ -95,40 +82,35 @@ int main( int argc, char* args[] )
         
         Paddle p;
         
-        int c = COLLISION_NONE;
+        int collisionType = COLLISION_NONE;
         
         if (collides(b.getRect(), my_paddle.getRect())) {
             p = my_paddle;
-            c = collides(b.getRect(), my_paddle.getRect());
-        }
-        else if (collides(b.getRect(), op_paddle.getRect())) {
+            collisionType = collides(b.getRect(), my_paddle.getRect());
+        } else if (collides(b.getRect(), op_paddle.getRect())) {
             p = op_paddle;
-            c = collides(b.getRect(), op_paddle.getRect());
+            collisionType = collides(b.getRect(), op_paddle.getRect());
         }
         
         // Check if the ball has hit a paddle
-        if (c != COLLISION_NONE) {
-            
-            std::cout << c << std::endl;
+        if( collisionType != COLLISION_NONE ) {
             
             // Check which way to actually bounce the ball
-            if (c == COLLISION_CORNER) {
+            if( collisionType == COLLISION_CORNER)  {
                 b.bounce('y', p.vy);
                 b.bounce('x');
-            } else if (c == COLLISION_TB) {
+            } else if (collisionType == COLLISION_TB) {
                 b.bounce('y', p.vy);
-            } else if (c == COLLISION_LR) {
+            } else if (collisionType == COLLISION_LR) {
                 b.bounce('x');
                 b.vy += p.vy;
                 
                 // If the ball is moving too quickly slow it down to the maximum speed
                 if (abs(b.vy) > b.MAX_SPEED) {
-                    // Make sure the ball's velocity is in the same direction it was already moving
                     b.vy = (b.vy/abs(b.vy)) * b.MAX_SPEED;
                 }
-                
                 // If the ball isn't going at it's max speed speed it up
-                if (abs(b.vx) < b.MAX_SPEED) {
+                else if (abs(b.vx) < b.MAX_SPEED) {
                     b.vx += 0.5;
                 }
             }
@@ -149,7 +131,7 @@ int main( int argc, char* args[] )
         
         // If the ball would go off the top or bottom bounce it back
         if (b.y > SCREEN_HEIGHT - b.BALL_HEIGHT || collides(b.getRect(), score_rect)) {
-            std::cout << "Bouncing off the top/bottom\n";
+            log( "Bouncing off the top/bottom" );
             b.bounce('y');
         }
         
@@ -160,23 +142,17 @@ int main( int argc, char* args[] )
         
     }
     
-    // Perform deletion operations
     close();
-    
     return 0;
 }
 
-SDL_Surface *load_image (std::string s, int r, int g, int b) {
+SDL_Surface *load_image( std::string path, int r, int g, int b ) {
     
-    // Get the desired image
-    SDL_Surface *temp = IMG_Load(s.c_str());
+    SDL_Surface *unformattedImage = IMG_Load( path.c_str() );
+    SDL_Surface *returnImage = SDL_DisplayFormat( unformattedImage );
     
-    // Format the image
-    SDL_Surface *returnImage = SDL_DisplayFormat(temp);
+    SDL_FreeSurface( unformattedImage );
     
-    SDL_FreeSurface(temp);
-    
-    // If the colour mapping is not the default (-1,-1,-1) use that colour key on the image
     if (r >= 0 && g >= 0 && b >= 0) {
         SDL_SetColorKey(returnImage, SDL_SRCCOLORKEY, SDL_MapRGB(returnImage->format, r, g, b));
     }
@@ -184,7 +160,7 @@ SDL_Surface *load_image (std::string s, int r, int g, int b) {
     return returnImage;
 }
 
-int collides (SDL_Rect rectA, SDL_Rect rectB) {
+int collides( SDL_Rect rectA, SDL_Rect rectB ) {
     
     int x = 0, y = 0;
     
@@ -201,7 +177,7 @@ int collides (SDL_Rect rectA, SDL_Rect rectB) {
     if ( rectA.y + rectA.h <= rectB.y + rectB.h && rectA.y + rectA.h >= rectB.y ) y++;
     
     // For a collision to occur both an x and y component (a corner) have to be in the other rectangle
-    if (x && y) {
+    if( x && y ) {
         
         // If the first box collides with the top or bottom of the second
         if (x == 2) return COLLISION_TB;
@@ -224,7 +200,6 @@ void update_score () {
     s << my_score;
     my_scoreSurface = TTF_RenderText_Solid(font, s.str().c_str(), fontColour);
     
-    // Clear the string stream
     s.str("");
     
     s << op_score;
@@ -233,7 +208,6 @@ void update_score () {
 }
 
 void op_movement () {
-    
     
     static int r;
     static int randomDelay;
@@ -266,7 +240,7 @@ void op_movement () {
         }
     }
     
-    if (randomDelay == 0) {
+    if( randomDelay == 0 ) {
         randomDelay = arc4random() % 15;
     }
     
@@ -275,7 +249,7 @@ void op_movement () {
     op_paddle.move();
 }
 
-void init () {
+void init() {
     
     SDL_Init(SDL_INIT_EVERYTHING);
     
@@ -286,49 +260,43 @@ void init () {
     SDL_WM_SetCaption("Paddle Battle", NULL);
 }
 
-void load () {
+void load() {
     
-    //Open the font
     font = TTF_OpenFont( "arial.ttf", 28 );
     
     background = load_image("Background.png");
     
-    // Set the paddle images
     my_paddle.images[0] = load_image("Paddle.png");
     op_paddle.images[0] = load_image("Paddle.png");
     
     my_paddle.images[1] = load_image("paddle_big.png");
     op_paddle.images[1] = load_image("paddle_big.png");
     
-    // Set the ball image
     b.setImage(load_image("Ball.png", 0xFF, 0xFF, 0xFF));
     
     update_score();
     
-    // Declare the co-ordinates for the score labels
+    // User score
     score_offsets[0].x = 25;
     score_offsets[0].y = 5;
     
+    // Opponent score
     score_offsets[1].x = 610;
     score_offsets[1].y = 5;
     
-    // Define that bounds of the score bar
     score_rect.x = 0;
     score_rect.y = 0;
     score_rect.w = SCREEN_WIDTH;
     score_rect.h = 40;
 }
 
-void draw () {
+void draw() {
     
-    // Draw background
     SDL_BlitSurface(background, NULL, screen, NULL);
     
-    // Draw score text
     SDL_BlitSurface(my_scoreSurface, NULL, screen, &score_offsets[0]);
     SDL_BlitSurface(op_scoreSurface, NULL, screen, &score_offsets[1]);
     
-    // Draw paddles at appropriate co ordinates
     my_paddle.draw(screen);
     op_paddle.draw(screen);
     
@@ -342,10 +310,9 @@ void draw () {
     
     // Update screen
     SDL_Flip(screen);
-    
 }
 
-void close () {
+void close() {
     
     SDL_FreeSurface(background);
     SDL_FreeSurface(my_scoreSurface);
@@ -356,7 +323,12 @@ void close () {
     TTF_Quit();
     
     SDL_Quit();
-    
+}
+
+void log( std::string msg ) {
+    if( DEBUG ) {
+        std::cout << msg << std::endl;
+    }
 }
 
 

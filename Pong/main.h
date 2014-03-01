@@ -47,4 +47,6 @@ void update_score(void);
 
 void op_movement(void);
 
+void log( std::string msg );
+
 #endif /* defined(__Pong__main__) */

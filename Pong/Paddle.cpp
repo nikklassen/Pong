@@ -14,25 +14,24 @@ Paddle::Paddle() {
     
     vy = 0.0;
     
-    for (int i = 0; i < 2; i++) images[i] = NULL;
-    
+    images[0] = NULL;
+    images[1] = NULL;
 }
 
-Paddle::Paddle(int startX, int startY) {
+Paddle::Paddle( int startX, int startY ) {
     
     x = startX;
     y = startY;
     
     vy = 0.0;
     
-    for (int i = 0; i < 2; i++) images[i] = NULL;
-    
+    images[0] = NULL;
+    images[1] = NULL;
 }
 
 Paddle::~Paddle() {
-    for (int i = 0; i < 2; i++) {
-        SDL_FreeSurface(images[i]);
-    }
+    SDL_FreeSurface(images[0]);
+    SDL_FreeSurface(images[1]);
 }
 
 Paddle& Paddle::operator=(const Paddle& p) {
@@ -42,15 +41,16 @@ Paddle& Paddle::operator=(const Paddle& p) {
     
     vy = p.vy;
     
-    for (int i = 0; i < 2; i++) images[i] = NULL;
+    images[0] = NULL;
+    images[1] = NULL;
     
     return *this;
 }
 
 void Paddle::handle_event(SDL_Event event) {
     
-    if (event.type == SDL_KEYDOWN) {
-        switch (event.key.keysym.sym) {
+    if( event.type == SDL_KEYDOWN ) {
+        switch( event.key.keysym.sym ) {
             case SDLK_DOWN:
                 vy += speed;
                 break;
@@ -59,25 +59,26 @@ void Paddle::handle_event(SDL_Event event) {
             default:
                 break;
         }
-    } else if (event.type == SDL_KEYUP) {
-        if (event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_DOWN) vy = 0.0;
+    } else if( event.type == SDL_KEYUP ) {
+        if( event.key.keysym.sym == SDLK_UP || event.key.keysym.sym == SDLK_DOWN ) {
+            vy = 0.0;
+        }
     }
 }
 
 void Paddle::move() {
     
-    if (abs(vy) < MAX_SPEED && vy != 0.0) {
+    if( abs(vy) < MAX_SPEED && vy != 0.0 ) {
         if (vy > 0) vy += 0.5;
         else vy -= 0.5;
     }
     y += vy;
     
-    if (y < BAR_HEIGHT) {
+    if( y < BAR_HEIGHT ) {
         y = BAR_HEIGHT + 1;
-    } else if (y > (SCREEN_HEIGHT - images[currentImage]->clip_rect.h)) {
+    } else if( y > (SCREEN_HEIGHT - images[currentImage]->clip_rect.h) ) {
         y = SCREEN_HEIGHT - images[currentImage]->clip_rect.h - 1;
     }
-    
 }
 
 void Paddle::draw(SDL_Surface *src) {
@@ -88,7 +89,6 @@ void Paddle::draw(SDL_Surface *src) {
     rect.y = y;
     
     SDL_BlitSurface(images[currentImage], NULL, src, &rect);
-
 }
 
 SDL_Rect Paddle::getRect() {
